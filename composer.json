@@ -1,6 +1,6 @@
 {
   "name": "zmog/php-lingea",
-  "description": "Library to generate PDF invoices",
+  "description": "Library to help you to manage your Lingea api requests.",
   "type": "library",
   "license": "GPL-3.0-or-later",
   "keywords": [
