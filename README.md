@@ -1,6 +1,6 @@
 # php-lingea
 
-This repo help you to manage your Lingea api call. 
+This repo help you to manage your Lingea api requests. 
 
 [![GitHub release](https://img.shields.io/badge/release-v0.1.0-blue.svg)](https://github.com/Gizmo091/php-lingea/releases/)
 ![PHP Version](https://img.shields.io/badge/PHP-8.1+-blue.svg)
