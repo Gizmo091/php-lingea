@@ -12,4 +12,12 @@ class TranslationPair {
         $this->_ToLanguage   = $ToLanguage;
     }
 
+    public function getFrom() : TranslationLanguage {
+        return $this->_FromLanguage;
+    }
+
+    public function getTo() : TranslationLanguage {
+        return $this->_ToLanguage;
+    }
+
 }

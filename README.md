@@ -2,7 +2,7 @@
 
 This repo help you to manage your Lingea api requests. 
 
-[![GitHub release](https://img.shields.io/badge/release-v0.1.0-blue.svg)](https://github.com/Gizmo091/php-lingea/releases/)
+[![GitHub release](https://img.shields.io/badge/release-v0.3.0-blue.svg)](https://github.com/Gizmo091/php-lingea/releases/)
 ![PHP Version](https://img.shields.io/badge/PHP-8.1+-blue.svg)
 
 [comment]: <> (Badge generated with https://naereen.github.io/badges/)
@@ -28,5 +28,12 @@ $text = 'Hello, my name is Mathieu.';
 
 $translated_text = $TranslationApi->translate($text,\Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode('eng'),\Zmog\Libs\Lingea\TranslationLanguage\ISO_639_1::fromCode('cs'),\Zmog\Libs\Lingea\TranslationFormat\Plain::instance());
 ?>
+```
+
+
+## Demo scripts :
+
+```
+php test/translate.php "my_api_key" 
 ```
 

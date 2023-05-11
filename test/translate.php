@@ -1,6 +1,6 @@
 <?php
 
-include "../vendor/autoload.php";
+include dirname(__DIR__).DIRECTORY_SEPARATOR."vendor".DIRECTORY_SEPARATOR."autoload.php";
 if ($argc <= 1) {
     echo "Usage: php language.php <api_key>".PHP_EOL;
     exit(1);
