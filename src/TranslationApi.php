@@ -52,18 +52,20 @@ class TranslationApi {
      */
     public function translate(string $text, TranslationLanguage $from_lng, TranslationLanguage $to_lng, TranslationFormat $from_format, TranslationFormat $to_format = null): string {
         $to_format = $to_format ?? $from_format;
-        $Request   = new Request('GET', $this->_api_url.'?'.http_build_query([
-                                                                                 'apiKey'     => $this->_api_key,
-                                                                                 'langStd'    => 'iso2',
-                                                                                 'toFormat'   => $to_format->format(),
-                                                                                 'fromFormat' => $from_format->format(),
-                                                                                 'fromLang'   => $from_lng->lingeaCode(),
-                                                                                 'toLang'     => $to_lng->lingeaCode(),
-                                                                                 'text'       => $text,
-                                                                             ]));
         $Client    = new Client([]);
+
         try {
-            $Response = $Client->send($Request);
+            $Response = $Client->request('POST', $this->_api_url, [
+                'form_params' => [
+                    'apiKey'     => $this->_api_key,
+                    'langStd'    => 'iso2',
+                    'toFormat'   => $to_format->format(),
+                    'fromFormat' => $from_format->format(),
+                    'fromLang'   => $from_lng->lingeaCode(),
+                    'toLang'     => $to_lng->lingeaCode(),
+                    'text'       => $text,
+                ]
+            ]);
         }
         catch (\Exception $e) {
             throw new LingeaException('Error '.$e->getMessage(), 0, $e);
