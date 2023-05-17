@@ -89,7 +89,7 @@ $bench_spl_fn = function(string $language_code) use ($api_key,$sentences_a) {
         $TranslationApi->translate($text,$From_lng,$To_lng,$Format);
     };
 };
-$iteration = 10;
+$iteration = 1;
 foreach (['eng','rus',/*'ara','hun','ita','pol','por','spa','tur','ukr'*/] as $lng_code) {
     $bench($bench_sentence_fn($lng_code),"Translate sentence (plain) To $lng_code",$iteration);
     $bench($bench_p_fn($lng_code),"Translate text(p) To $lng_code",$iteration);
