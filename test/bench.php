@@ -1,6 +1,15 @@
 <?php
+include dirname( __DIR__).DIRECTORY_SEPARATOR."vendor".DIRECTORY_SEPARATOR."autoload.php";
 
-include dirname(__DIR__).DIRECTORY_SEPARATOR."vendor".DIRECTORY_SEPARATOR."autoload.php";
+
+use Zmog\Libs\Lingea\TranslationApi;
+use Zmog\Libs\Lingea\TranslationFormat\ParagraphPerLine;
+use Zmog\Libs\Lingea\TranslationFormat\ParagraphsDelimitedByEmptyLines;
+use Zmog\Libs\Lingea\TranslationFormat\Plain;
+use Zmog\Libs\Lingea\TranslationFormat\SentPerLine;
+use Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b;
+
+
 if ($argc <= 1) {
     echo "Usage: php language.php <api_key>".PHP_EOL;
     exit(1);
@@ -24,10 +33,10 @@ $bench = function(callable $callable,string $label, int $iteration = 1) {
 
 
 $bench_sentence_fn = function(string $language_code) use ($api_key) {
-    $From_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode("fre");
-    $TranslationApi = new \Zmog\Libs\Lingea\TranslationApi($api_key);
-    $Format = \Zmog\Libs\Lingea\TranslationFormat\Plain::instance();
-    $To_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode($language_code);
+    $From_lng = ISO_639_2b::fromCode("fre");
+    $TranslationApi = new TranslationApi($api_key);
+    $Format = Plain::instance();
+    $To_lng = ISO_639_2b::fromCode($language_code);
     return function() use ($TranslationApi,$From_lng,$To_lng,$Format) {
         $TranslationApi->translate('Bonjour, je suis Mathieu, le développeur de ce repo.',$From_lng,$To_lng,$Format);
     };
@@ -46,10 +55,10 @@ $sentences_a = [
     ];
 
 $bench_p_fn = function(string $language_code) use ($api_key,$sentences_a) {
-    $From_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode("fre");
-    $TranslationApi = new \Zmog\Libs\Lingea\TranslationApi($api_key);
-    $Format = \Zmog\Libs\Lingea\TranslationFormat\Plain::instance();
-    $To_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode($language_code);
+    $From_lng = ISO_639_2b::fromCode("fre");
+    $TranslationApi = new TranslationApi($api_key);
+    $Format = Plain::instance();
+    $To_lng = ISO_639_2b::fromCode($language_code);
     $text = implode(' ',$sentences_a);
     return function() use ($TranslationApi,$From_lng,$To_lng,$Format,$text) {
         $TranslationApi->translate($text,$From_lng,$To_lng,$Format);
@@ -57,10 +66,10 @@ $bench_p_fn = function(string $language_code) use ($api_key,$sentences_a) {
 };
 
 $bench_ppl_fn = function(string $language_code) use ($api_key,$sentences_a) {
-    $From_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode("fre");
-    $TranslationApi = new \Zmog\Libs\Lingea\TranslationApi($api_key);
-    $Format = \Zmog\Libs\Lingea\TranslationFormat\ParagraphPerLine::instance();
-    $To_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode($language_code);
+    $From_lng = ISO_639_2b::fromCode("fre");
+    $TranslationApi = new TranslationApi($api_key);
+    $Format = ParagraphPerLine::instance();
+    $To_lng = ISO_639_2b::fromCode($language_code);
     $text = implode(PHP_EOL,$sentences_a);
     return function() use ($TranslationApi,$From_lng,$To_lng,$Format,$text) {
         $TranslationApi->translate($text,$From_lng,$To_lng,$Format);
@@ -69,10 +78,10 @@ $bench_ppl_fn = function(string $language_code) use ($api_key,$sentences_a) {
 
 
 $bench_pdbel_fn = function(string $language_code) use ($api_key,$sentences_a) {
-    $From_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode("fre");
-    $TranslationApi = new \Zmog\Libs\Lingea\TranslationApi($api_key);
-    $Format = \Zmog\Libs\Lingea\TranslationFormat\ParagraphsDelimitedByEmptyLines::instance();
-    $To_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode($language_code);
+    $From_lng = ISO_639_2b::fromCode("fre");
+    $TranslationApi = new TranslationApi($api_key);
+    $Format = ParagraphsDelimitedByEmptyLines::instance();
+    $To_lng = ISO_639_2b::fromCode($language_code);
     $text = implode(PHP_EOL.PHP_EOL,$sentences_a);
     return function() use ($TranslationApi,$From_lng,$To_lng,$Format,$text) {
         $TranslationApi->translate($text,$From_lng,$To_lng,$Format);
@@ -80,10 +89,10 @@ $bench_pdbel_fn = function(string $language_code) use ($api_key,$sentences_a) {
 };
 
 $bench_spl_fn = function(string $language_code) use ($api_key,$sentences_a) {
-    $From_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode("fre");
-    $TranslationApi = new \Zmog\Libs\Lingea\TranslationApi($api_key);
-    $Format = \Zmog\Libs\Lingea\TranslationFormat\SentPerLine::instance();
-    $To_lng = \Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b::fromCode($language_code);
+    $From_lng = ISO_639_2b::fromCode("fre");
+    $TranslationApi = new TranslationApi($api_key);
+    $Format = SentPerLine::instance();
+    $To_lng = ISO_639_2b::fromCode($language_code);
     $text = implode(PHP_EOL,$sentences_a);
     return function() use ($TranslationApi,$From_lng,$To_lng,$Format,$text) {
         $TranslationApi->translate($text,$From_lng,$To_lng,$Format);
