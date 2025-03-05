@@ -3,6 +3,7 @@
 namespace Zmog\Libs\Lingea;
 
 
+use ReflectionClass;
 use WhiteCube\Lingua\Service;
 use Zmog\Libs\Lingea\TranslationLanguage\Autodetect;
 use Zmog\Libs\Lingea\TranslationLanguage\ISO_639_1;
@@ -19,7 +20,7 @@ abstract class TranslationLanguage {
         $this->_language_code = $language_code;
         $this->_Service = call_user_func_array([
                                                    Service::class,
-                                                   'createFrom'.(new \ReflectionClass($this))->getShortName(),
+                                                   'createFrom'.(new ReflectionClass($this))->getShortName(),
                                                ], [$this->_language_code]);
         if("" === $this->_Service->toISO_639_1()) {
             throw new LingeaException('Language code "'.$this->_language_code.'" is not a valid code.');

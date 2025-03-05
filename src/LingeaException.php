@@ -2,6 +2,8 @@
 
 namespace Zmog\Libs\Lingea;
 
-class LingeaException extends \Exception {
+use Exception;
+
+class LingeaException extends Exception {
 
 }

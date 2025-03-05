@@ -2,6 +2,7 @@
 
 namespace Zmog\Libs\Lingea;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
@@ -50,7 +51,7 @@ class TranslationApi {
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Zmog\Libs\Lingea\LingeaException
      */
-    public function translate(string $text, TranslationLanguage $from_lng, TranslationLanguage $to_lng, TranslationFormat $from_format, TranslationFormat $to_format = null): string {
+    public function translate(string $text, TranslationLanguage $from_lng, TranslationLanguage $to_lng, TranslationFormat $from_format, ?TranslationFormat $to_format = null): string {
         $to_format = $to_format ?? $from_format;
         $Client    = new Client([]);
 
@@ -67,7 +68,7 @@ class TranslationApi {
                 ]
             ]);
         }
-        catch (\Exception $e) {
+        catch ( Exception $e) {
             throw new LingeaException('Error '.$e->getMessage(), 0, $e);
         }
 
