@@ -2,7 +2,7 @@
 
 This repo help you to manage your Lingea api requests. 
 
-[![GitHub release](https://img.shields.io/badge/release-v0.3.0-blue.svg)](https://github.com/Gizmo091/php-lingea/releases/)
+[![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue.svg)](https://github.com/Gizmo091/php-lingea/releases/)
 ![PHP Version](https://img.shields.io/badge/PHP-8.1+-blue.svg)
 
 [comment]: <> (Badge generated with https://naereen.github.io/badges/)
