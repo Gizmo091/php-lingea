@@ -9,12 +9,21 @@ use Zmog\Libs\Lingea\TranslationFormat\Plain;
 use Zmog\Libs\Lingea\TranslationFormat\SentPerLine;
 use Zmog\Libs\Lingea\TranslationLanguage\ISO_639_2b;
 
-
 if ($argc <= 1) {
-    echo "Usage: php language.php <api_key>".PHP_EOL;
+    echo "Usage: php language.php <api_key> (<api_url>?)".PHP_EOL;
     exit(1);
 }
 $api_key = $argv[1];
+$api_url = null;
+if ($argc >= 3) {
+    if (filter_var($argv[2], FILTER_VALIDATE_URL)) {
+        $api_url = $argv[2];
+    } else {
+        echo "Error: Invalid URL provided: {$argv[2]}" . PHP_EOL;
+        echo "Please provide a valid URL as the second argument" . PHP_EOL;
+        exit( 1 );
+    }
+}
 
 
 $bench = function(callable $callable,string $label, int $iteration = 1) {
@@ -32,9 +41,10 @@ $bench = function(callable $callable,string $label, int $iteration = 1) {
 };
 
 
-$bench_sentence_fn = function(string $language_code) use ($api_key) {
+
+$bench_sentence_fn = function(string $language_code) use ($api_key,$api_url) {
     $From_lng = ISO_639_2b::fromCode("fre");
-    $TranslationApi = new TranslationApi($api_key);
+    $TranslationApi = new TranslationApi($api_key,$api_url);
     $Format = Plain::instance();
     $To_lng = ISO_639_2b::fromCode($language_code);
     return function() use ($TranslationApi,$From_lng,$To_lng,$Format) {
@@ -54,9 +64,9 @@ $sentences_a = [
     "C’est la seconde vague d’inondations meurtrières en moins d’un mois dans la région."
     ];
 
-$bench_p_fn = function(string $language_code) use ($api_key,$sentences_a) {
+$bench_p_fn = function(string $language_code) use ($api_key,$api_url,$sentences_a) {
     $From_lng = ISO_639_2b::fromCode("fre");
-    $TranslationApi = new TranslationApi($api_key);
+    $TranslationApi = new TranslationApi($api_key,$api_url);
     $Format = Plain::instance();
     $To_lng = ISO_639_2b::fromCode($language_code);
     $text = implode(' ',$sentences_a);
@@ -65,9 +75,10 @@ $bench_p_fn = function(string $language_code) use ($api_key,$sentences_a) {
     };
 };
 
-$bench_ppl_fn = function(string $language_code) use ($api_key,$sentences_a) {
+
+$bench_ppl_fn = function(string $language_code) use ($api_key,$api_url,$sentences_a) {
     $From_lng = ISO_639_2b::fromCode("fre");
-    $TranslationApi = new TranslationApi($api_key);
+    $TranslationApi = new TranslationApi($api_key,$api_url);
     $Format = ParagraphPerLine::instance();
     $To_lng = ISO_639_2b::fromCode($language_code);
     $text = implode(PHP_EOL,$sentences_a);
@@ -77,9 +88,9 @@ $bench_ppl_fn = function(string $language_code) use ($api_key,$sentences_a) {
 };
 
 
-$bench_pdbel_fn = function(string $language_code) use ($api_key,$sentences_a) {
+$bench_pdbel_fn = function(string $language_code) use ($api_key,$api_url,$sentences_a) {
     $From_lng = ISO_639_2b::fromCode("fre");
-    $TranslationApi = new TranslationApi($api_key);
+    $TranslationApi = new TranslationApi($api_key,$api_url);
     $Format = ParagraphsDelimitedByEmptyLines::instance();
     $To_lng = ISO_639_2b::fromCode($language_code);
     $text = implode(PHP_EOL.PHP_EOL,$sentences_a);

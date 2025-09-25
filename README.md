@@ -34,7 +34,7 @@ $translated_text = $TranslationApi->translate($text,\Zmog\Libs\Lingea\Translatio
 ## Demo scripts :
 
 ```
-php test/language.php "my_api_key"
-php test/translate.php "my_api_key"
+php test/language.php "my_api_key" ("my_api_url"?)
+php test/translate.php "my_api_key" ("my_api_url"?)
 ```
 

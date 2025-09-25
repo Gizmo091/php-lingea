@@ -9,13 +9,15 @@ use GuzzleHttp\Psr7\Request;
 
 class TranslationApi {
 
+    const API_DEFAULT_URL = 'https://api1.lingea.com/translate.1.3.1/';
+
     protected string $_api_key;
     protected string $_api_url;
 
 
-    public function __construct(string $api_key, string $api_url = 'https://api1.lingea.com/translate.1.3.1/') {
+    public function __construct(string $api_key, ?string $api_url = null) {
         $this->_api_key = $api_key;
-        $this->_api_url = $api_url;
+        $this->_api_url = $api_url ?? self::API_DEFAULT_URL;
     }
 
 
