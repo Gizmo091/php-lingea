@@ -2,10 +2,14 @@
 
 This repo help you to manage your Lingea api requests. 
 
-[![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue.svg)](https://github.com/Gizmo091/php-lingea/releases/)
+[![GitHub release](https://img.shields.io/badge/release-v2.0.0-blue.svg)](https://github.com/Gizmo091/php-lingea/releases/)
 ![PHP Version](https://img.shields.io/badge/PHP-8.1+-blue.svg)
 
 [comment]: <> (Badge generated with https://naereen.github.io/badges/)
+
+## Warning 
+
+Version >= 2.0.0 is only to call LTBE >= 1.0.0 API revision, if deal with and older version of lingea API, use version 1.x.x
 
 
 ## Installation
