@@ -48,8 +48,8 @@ php test/translate.php "my_api_key" ("my_api_url"?)
 ## Coverage : 
 
 ### core_user
-![Static Badge](https://img.shields.io/badge/method-GET-blue) ```/api/v1/user/me``` ![Static Badge](https://img.shields.io/badge/include-NO-red)  
-![Static Badge](https://img.shields.io/badge/method-POST-green) /api/v1/user/login ![Static Badge](https://img.shields.io/badge/include-NO-red)  
+![Static Badge](https://img.shields.io/badge/method-GET-blue) ```/api/v1/user/me``` ![Static Badge](https://img.shields.io/badge/include-YES-green)  
+![Static Badge](https://img.shields.io/badge/method-POST-green) /api/v1/user/login ![Static Badge](https://img.shields.io/badge/include-YES-green)  
 ![Static Badge](https://img.shields.io/badge/method-GET-blue) /api/v1/user/logout ![Static Badge](https://img.shields.io/badge/include-NO-red)  
 ![Static Badge](https://img.shields.io/badge/method-GET-blue) /api/v1/user/key ![Static Badge](https://img.shields.io/badge/include-NO-red)  
 
