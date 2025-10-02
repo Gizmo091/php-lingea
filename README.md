@@ -9,8 +9,7 @@ This repo help you to manage your Lingea api requests.
 
 ## Warning 
 
-Version >= 2.0.0 is only to call LTBE >= 1.0.0 API revision, if deal with and older version of lingea API, use version 1.x.x
-
+Version LTBE has been moved to another repo : https://github.com/Gizmo091/php-lingea-ltbe
 
 ## Installation
 
